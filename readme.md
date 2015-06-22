@@ -22,12 +22,12 @@ The table below summarizes the TLB capabilities and sizes for ARMv7 Cortex-A cor
 
 | Core       | LPAE support | L1 data TLB size | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
 |------------|--------------|------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
-| Cortex-A5  | N            | 10                       | ?            | 10           | ?         | 128                 | Y   |
-| Cortex-A7  | Y            | 10                       | ?            | 10           | ?         | 256                 | Y   |
-| Cortex-A8  | N            | 32                       | Y            | 32           | Y         | N/A                 | N/A |
-| Cortex-A9  | N            | 32                       | ?            | 32 or 64     | ?         | 64, 128, 256 or 512 | Y   |
-| Cortex-A15 | Y            | 32 (reads) + 32 (writes) | Optional 1MB | 32           | N         | 512                 | Y   |
-| Cortex-A17 | Y            | 32                       | 1 MB only    | 32, 48 or 64 | 1 MB only | 1024                | Y   |
+| Cortex-A5  | N            | 10                       | ?            | 10           | ?         | 128                       | Y   |
+| Cortex-A7  | Y            | 10                       | ?            | 10           | ?         | 256                       | Y   |
+| Cortex-A8  | N            | 32                       | Y            | 32           | Y         | N/A                       | N/A |
+| Cortex-A9  | N            | 32                       | ?            | 32 or 64     | ?         | 4 + (64, 128, 256 or 512) | Y   |
+| Cortex-A15 | Y            | 32 (reads) + 32 (writes) | Optional 1MB | 32           | N         | 512                       | Y   |
+| Cortex-A17 | Y            | 32                       | 1 MB only    | 32, 48 or 64 | 1 MB only | 1024                      | Y   |
 
 
 In the TRMs for A5, A7 and A9 it's not clear what sizes are supported by the L1 micro TLBs.
@@ -43,6 +43,15 @@ Runtime detection
 Given the large number of cores with vague specifications or vendor-configurable options, I thought it would be interesting to develop a tool and a technique to determine the configuration by observing runtime behaviour, without any access to specs.
 
 I'm introducing the unimaginatively named tlb_test utility, which runs on ARM GNU/Linux systems.
+
+
+Configurations determined using tlb_test
+----------------------------------------
+
+| System | LPAE support | L1 data TLB size | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
+|------------|--------------|------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
+| Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N | 32 | ? | ? | ? | 4 + 128 | Y |
+
 
 
 Theory of operation
