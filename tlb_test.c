@@ -22,7 +22,7 @@
 
 #define PAGE_SIZE 4096
 #define OP_CNT (1000*1000*1000)
-#define OVERSIZE 4
+#define OVERSIZE 8
 #define MAX_SIZE 2048
 #define INST_OFFSET (PAGE_SIZE + 8)
 

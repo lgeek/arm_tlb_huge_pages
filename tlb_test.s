@@ -22,7 +22,7 @@ data_test:
   MOV R3, #0 @index
 
 r:ADD R12, R0, R3, LSL #12
-  LDR R12, [R12, R3, LSL #3]
+  LDR R12, [R12, R3, LSL #4]
 
   ADD R3, #1
   CMP R3, R1
