@@ -50,7 +50,7 @@ Configurations determined using tlb_test
 
 | System | LPAE support | L1 data TLB size | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
 |------------|--------------|------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
-| Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N | 32 | ? | ? | ? | 4 + 128 | Y |
+| Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N | 32 | ? | 32 | ? | 4 + 128 | Y |
 
 
 
