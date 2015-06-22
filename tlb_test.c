@@ -24,36 +24,79 @@
 #define OP_CNT (1000*1000*1000)
 #define OVERSIZE 4
 #define MAX_SIZE 2048
+#define INST_OFFSET (PAGE_SIZE + 8)
 
-extern void test(void *buf, int page_cnt, int op_cnt);
+extern void data_test(void *buf, int page_cnt, int op_cnt);
+extern void *inst_test;
+
+typedef void (*itest)(uint32_t count);
 
 void help() {
-  printf("\nSyntax: ./tlb_test SIZE [-huge]\n"
+  printf("\nSyntax: ./tlb_test [d|i] SIZE [-huge]\n"
+         "  d      - dTLB test\n"
+         "  i      - iTLB test\n"
          "  SIZE   - specified in 4KiB units [1...%d]\n"
          "  -huge  - allocates huge pages\n\n", MAX_SIZE);
   exit(EXIT_FAILURE);
+}
+
+void prepare_inst(void *buf, int cnt) {
+  uint32_t *fixup;
+  void *start_buf = buf;
+
+  for (int i = 0; i < cnt; i++) {
+    memcpy(buf, &inst_test, 12);
+    buf += INST_OFFSET;
+  }
+
+  // Loop back to the first page
+  fixup = ((uint32_t *)(buf - INST_OFFSET)) + 1;
+  *fixup &= 0xFF000000;
+  *fixup |= ((uint32_t *)start_buf - fixup - 2) & 0xFFFFFF;
+
+  __clear_cache(start_buf, fixup + 3);
 }
 
 int main(int argc, char **argv) {
   int page_cnt;
   uint8_t *buf;
   int use_huge_pages = 0;
-  
-  if (argc != 2 && argc != 3) help();
-  page_cnt = atoi(argv[1]);
+  int is_data_test;
+  itest itlb_test;
+
+  if (argc != 3 && argc != 4) help();
+
+  if (strcmp(argv[1], "d") == 0) {
+    is_data_test = 1;
+  } else if (strcmp(argv[1], "i") == 0) {
+    is_data_test = 0;
+  } else {
+    help();
+  }
+
+  page_cnt = atoi(argv[2]);
   if (page_cnt < 1 || page_cnt > MAX_SIZE) help();
-  if (argc == 3) {
-    if (strcmp(argv[2], "-huge") == 0) {
+
+  if (argc == 4) {
+    if (strcmp(argv[3], "-huge") == 0) {
       use_huge_pages = 1;
     } else {
       help();
     }
   }
-  
-  buf = mmap(NULL, PAGE_SIZE * (page_cnt + OVERSIZE), PROT_READ | PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|(use_huge_pages ? MAP_HUGETLB : 0), -1, 0);
+
+  buf = mmap(NULL, PAGE_SIZE * (page_cnt + OVERSIZE),
+             PROT_READ | PROT_WRITE | (is_data_test ? 0 : PROT_EXEC),
+             MAP_PRIVATE|MAP_ANONYMOUS|(use_huge_pages ? MAP_HUGETLB : 0), -1, 0);
   assert(buf != MAP_FAILED);
-  
-  test(buf, page_cnt, OP_CNT);
+
+  if (is_data_test) {
+    data_test(buf, page_cnt, OP_CNT);
+  } else {
+    prepare_inst(buf, page_cnt);
+    itlb_test = (itest)buf;
+    itlb_test(OP_CNT);
+  }
 
   return 0;
 }
