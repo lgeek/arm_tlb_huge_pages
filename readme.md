@@ -57,6 +57,7 @@ Configurations determined using tlb_test
 | Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N            | 32 | ? | 32 | ? | 4 + 128 | Y |
 | Xilinx Zynq Z-7045 (Cortex-A9)           | N            | 32 | ? | 32 | ? | 4 + 128 | Y |
 | ARM Juno LITTLE core (Cortex-A53)        | N/A (64-bit) | 10 | N | 10 | Y | 512     | Y |
+| Rockchip RK3288 (Cortex-A17)             | Y            | 32 | Y | 32 | Y | 1024    | Y |
 
 
 Theory of operation
