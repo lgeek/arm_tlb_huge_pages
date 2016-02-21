@@ -46,19 +46,19 @@ Runtime detection
 
 Given the large number of cores with vague specifications or vendor-configurable options, I thought it would be interesting to develop a tool and a technique to determine the configuration by observing runtime behaviour, without any access to specs.
 
-I'm introducing the unimaginatively named tlb_test utility, which runs on ARM GNU/Linux systems.
+I'm introducing the unimaginatively named tlb test utility, which runs on ARM GNU/Linux systems.
 
 
-Configurations determined using tlb_test
+Configurations determined using tlb test
 ----------------------------------------
 
 | System | LPAE support | L1 data TLB size | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
 |------------|--------------|------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
-| Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N            | 32 | ? | 32 | ? | 4 + 128 | Y |
-| Xilinx Zynq Z-7045 (Cortex-A9)           | N            | 32 | ? | 32 | ? | 4 + 128 | Y |
-| ARM Juno LITTLE core (Cortex-A53)        | N/A (64-bit) | 10 | N | 10 | Y | 512     | Y |
-| Rockchip RK3288 (Cortex-A17)             | Y            | 32 | Y | 32 | Y | 1024    | Y |
-
+| Odroid-X2 (Exynos 4412 Prime, Cortex-A9) | N            | 32     | ? | 32     | ? | 4 + 128 | Y |
+| Xilinx Zynq Z-7045 (Cortex-A9)           | N            | 32     | ? | 32     | ? | 4 + 128 | Y |
+| ARM Juno LITTLE core (Cortex-A53)        | N/A (64-bit) | 10     | N | 10     | Y | 512     | Y |
+| Rockchip RK3288 (Cortex-A17)             | Y            | 32     | Y | 32     | Y | 1024    | Y |
+| Tegra K1 T132 (NVIDIA Denver)            | N/A (64-bit) | 256(?) | ? | 128(?) | ? | ?       | ? |
 
 Theory of operation
 -------------------
