@@ -58,7 +58,7 @@ Configurations determined using tlb test
 | Xilinx Zynq Z-7045 (Cortex-A9)           | N            | 32     | ? | 32     | ? | 4 + 128 | Y |
 | ARM Juno LITTLE core (Cortex-A53)        | N/A (64-bit) | 10     | N | 10     | Y | 512     | Y |
 | Rockchip RK3288 (Cortex-A17)             | Y            | 32     | Y | 32     | Y | 1024    | Y |
-| Tegra K1 T124 (Cortex-A15)               | N          | 32(+32?) | N | 32     | N | 512     | Y |
+| Tegra K1 T124 (Cortex-A15)               | Y          | 32(+32?) | N | 32     | N | 512     | Y |
 | Tegra K1 T132 (NVIDIA Denver)            | N/A (64-bit) | 256(?) | ? | 128(?) | ? | ?       | ? |
 | APM883208 (APM X-Gene)                   | N/A (64-bit) | 20     | Y | 10     | N | 1024    | Y |
 
