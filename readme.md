@@ -20,18 +20,18 @@ The L2 TLB generally supports huge pages, but it can also cache a high number of
 
 The table below summarizes the TLB capabilities and sizes for ARM Cortex-A cores:
 
-| Core       | LPAE support | L1 data TLB size | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
-|------------|--------------|------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
-| Cortex-A5  | N            | 10                       | ?            | 10           | ?         | 128                       | Y   |
-| Cortex-A7  | Y            | 10                       | ?            | 10           | ?         | 256                       | Y   |
-| Cortex-A8  | N            | 32                       | Y            | 32           | Y         | N/A                       | N/A |
-| Cortex-A9  | N            | 32                       | ?            | 32 or 64     | ?         | 4 + (64, 128, 256 or 512) | Y   |
-| Cortex-A15 | Y            | 32 (reads) + 32 (writes) | Optional 1MB | 32           | N         | 512                       | Y   |
-| Cortex-A17 | Y            | 32                       | 1 MB only    | 32, 48 or 64 | 1 MB only | 1024                      | Y   |
-| Cortex-A53 | N/A (64-bit) | 10                       | ?            | 10           | ?         | 512                       | Y   |
-| Cortex-A57 | N/A (64-bit) | 32                       | 1 MB only    | 48           | 1 MB only | 1024                      | Y   |
-| Cortex-A72 | N/A (64-bit) | 32                       | 1 MB only    | 48           | 1 MB only | 1024                      | Y   |
-| Cortex-A73 | N/A (64-bit) | 48                       | 16K, 64K, 1M | 32           | 16K, 64K, 1M | 1024 + 128             | 1024 * (16K, 64K) + 128 * (1M, 2M, 16M, 32M, 512M, 1G)
+| Core       | LPAE support | L1 data TLB size         | L1 data huge page support | L1 inst. TLB size | L1 inst. huge page support | L2 TLB size | L2 TLB huge page support |
+|------------|--------------|--------------------------|---------------------------|-------------------|----------------------------|-------------|--------------------------|
+| Cortex-A5  | N            | 10                       | ?            | 10           | ?            | 128                       | Y   |
+| Cortex-A7  | Y            | 10                       | ?            | 10           | ?            | 256                       | Y   |
+| Cortex-A8  | N            | 32                       | Y            | 32           | Y            | N/A                       | N/A |
+| Cortex-A9  | N            | 32                       | ?            | 32 or 64     | ?            | 4 + (64, 128, 256 or 512) | Y   |
+| Cortex-A15 | Y            | 32 (reads) + 32 (writes) | Optional 1M  | 32           | N            | 512                       | 64K, 1M, 2M, 16M, 1G       |
+| Cortex-A17 | Y            | 32                       | 1M           | 32, 48 or 64 | 1M           | 1024                      | 64K, 1M, 2M, 16M, 1G       |
+| Cortex-A53 | N/A (64-bit) | 10                       | ?            | 10           | ?            | 512                       | 64K, 1M, 2M, 16M, 512M (?) |
+| Cortex-A57 | N/A (64-bit) | 32                       | 64K, 1M      | 48           | 64K, 1M      | 1024                      | 64K, 1M, 2M, 16M, 512M, 1G |
+| Cortex-A72 | N/A (64-bit) | 32                       | 64K, 1M      | 48           | 64K, 1M      | 1024                      | 64K, 1M, 2M, 16M, 512M, 1G |
+| Cortex-A73 | N/A (64-bit) | 48                       | 16K, 64K, 1M | 32           | 16K, 64K, 1M | 1024 + 128                | 1024 * (16K, 64K) + 128 * (1M, 2M, 16M, 32M, 512M, 1G)
 
 
 
