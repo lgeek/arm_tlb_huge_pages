@@ -31,6 +31,7 @@ The table below summarizes the TLB capabilities and sizes for ARM Cortex-A cores
 | Cortex-A53 | N/A (64-bit) | 10                       | ?            | 10           | ?         | 512                       | Y   |
 | Cortex-A57 | N/A (64-bit) | 32                       | 1 MB only    | 48           | 1 MB only | 1024                      | Y   |
 | Cortex-A72 | N/A (64-bit) | 32                       | 1 MB only    | 48           | 1 MB only | 1024                      | Y   |
+| Cortex-A73 | N/A (64-bit) | 48                       | 16K, 64K, 1M | 32           | 16K, 64K, 1M | 1024 + 128             | 1024 * (16K, 64K) + 128 * (1M, 2M, 16M, 32M, 512M, 1G)
 
 
 
