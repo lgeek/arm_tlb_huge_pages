@@ -62,6 +62,7 @@ Configurations determined using tlb test
 | Tegra K1 T124 (Cortex-A15)               | Y          | 32(+32?) | N | 32     | N | 512     | Y |
 | Tegra K1 T132 (NVIDIA Denver)            | N/A (64-bit) | 256(?) | ? | 128(?) | ? | ?       | ? |
 | APM883208 (APM X-Gene)                   | N/A (64-bit) | 20     | Y | 10     | N | 1024    | Y |
+| Tegra X2 T186 (NVIDIA Denver2)           | N/A (64-bit) | 256(?) | ? | 128(?) | ? | ?       | ? |
 
 Theory of operation
 -------------------
